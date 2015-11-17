@@ -20,6 +20,6 @@ def test_all_rotations_from_string():
     assert_that(r, is_(rotations))
 
 def test_transform():
-    bwt = BWT("BANANA")
-    assert_that(bwt.get_transform(), is_("BNN^AA|A"))
+    bwt = BWT("homolog.us")
+    assert_that(bwt.get_transform(), is_("sgo$oolmhu."))
 

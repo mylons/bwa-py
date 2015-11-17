@@ -2,15 +2,14 @@ from bwa.util import transform_string
 
 
 class BWT:
-    START_CHARACTER = '^'
-    EOF_CHARACTER = '|'
+    EOF_CHARACTER = '$'
     """
     class to represent a Transform
     """
 
     def __init__(self, input_string):
         self._bwt = [[]]
-        self.pre_transformed_string = "{self.START_CHARACTER}{input_string}{self.EOF_CHARACTER}".format(**locals())
+        self.pre_transformed_string = "{input_string}{self.EOF_CHARACTER}".format(**locals())
         self._bwt = transform_string(self.pre_transformed_string)
 
     def get_transform(self):

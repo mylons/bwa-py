@@ -1,14 +1,12 @@
 
 def all_rotations_from_string(input_string):
     rotations = [[None] * len(input_string) for _ in input_string]
-    # position in table
     rotations[0] = list(input_string)
+    # position in table
     for table_pos in range(1, len(input_string)):
         for string_pos in range(len(input_string)):
             # position to start in string
             offset = (string_pos + len(input_string) - 1) % len(input_string)
-            print("table_pos:{table_pos} string_pos:{string_pos} offset:{offset}".format(**locals()))
-
             rotations[table_pos][string_pos] = rotations[table_pos - 1][offset]
     return rotations
 
@@ -17,9 +15,7 @@ def transform_string(input_string):
     rotations = all_rotations_from_string(input_string)
     heap = Heap.from_string_rotations(rotations)
     heap.sort()
-    #construct BWT
-    result = []
-
+    # return BWT string
     return [r[-1] for r in heap.heap]
 
 
