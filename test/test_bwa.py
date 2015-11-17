@@ -2,6 +2,7 @@
 
 import unittest
 from hamcrest import is_, assert_that
+from bwa import BWT
 from bwa.util import all_rotations_from_string
 
 
@@ -15,6 +16,10 @@ def test_all_rotations_from_string():
                  ['N', 'A', 'N', 'A', '|', '^', 'B', 'A'],
                  ['A', 'N', 'A', 'N', 'A', '|', '^', 'B'],
                  ['B', 'A', 'N', 'A', 'N', 'A', '|', '^']]
-    bwt = all_rotations_from_string("^Banana|".upper())
-    assert_that(bwt, is_(rotations))
+    r = all_rotations_from_string("^Banana|".upper())
+    assert_that(r, is_(rotations))
+
+def test_transform():
+    bwt = BWT("BANANA")
+    assert_that(bwt.get_transform(), is_("BNN^AA|A"))
 
