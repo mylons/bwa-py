@@ -1,23 +1,4 @@
 
-def all_rotations_from_string(input_string):
-    rotations = [[None] * len(input_string) for _ in input_string]
-    rotations[0] = list(input_string)
-    # position in table
-    for table_pos in range(1, len(input_string)):
-        for string_pos in range(len(input_string)):
-            # position to start in string
-            offset = (string_pos + len(input_string) - 1) % len(input_string)
-            rotations[table_pos][string_pos] = rotations[table_pos - 1][offset]
-    return rotations
-
-
-def transform_string(input_string):
-    rotations = all_rotations_from_string(input_string)
-    heap = Heap.from_string_rotations(rotations)
-    heap.sort()
-    # return BWT string
-    return [r[-1] for r in heap.heap]
-
 
 def rotation_a_greater_than_b(a, b):
     for i, a_b in enumerate(zip(a, b)):
