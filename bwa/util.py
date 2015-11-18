@@ -1,14 +1,14 @@
 
 
-def rotation_a_greater_than_b(a, b):
-    for i, a_b in enumerate(zip(a, b)):
+def list_a_greater_than_list_b(a, b):
+    for a_b in zip(a, b):
         if not (a_b[0] >= a_b[1]):
             return False
         else:
             return True
 
-def rotation_a_less_than_b(a, b):
-    for i, a_b in enumerate(zip(a, b)):
+def list_a_less_than_list_b(a, b):
+    for a_b in zip(a, b):
         if not (a_b[0] <= a_b[1]):
             return False
         else:
@@ -41,7 +41,7 @@ class Heap:
 
         heap = cls(len(l))
         for item in l:
-            heap.insert(item, rotation_a_greater_than_b)
+            heap.insert(item, list_a_greater_than_list_b)
 
         return heap
 
@@ -117,7 +117,7 @@ class Heap:
         sorted_heap = []
         try:
             while True:
-                sorted_heap.append(self.extract_minimum(rotation_a_greater_than_b))
+                sorted_heap.append(self.extract_minimum(list_a_greater_than_list_b))
         except HeapError:
             # heap is now empty, woot
             pass
