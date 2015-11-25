@@ -25,6 +25,6 @@ def test_transform():
     #assert_that(bwt.get_inverse(), is_(original_string))
 
 def test_transform_dna():
-    bwt = BWT("tatatatata")
-    blah = 234
+    bwt = BWT("ataata")
+    assert_that(bwt.get_transform(), is_("atta$aa"))
 

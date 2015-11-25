@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List
 
 from bwa.util import Heap
 
@@ -41,7 +41,7 @@ class BWT:
     @staticmethod
     def transform_string(input_string: str) -> List[str]:
         rotations = BWT.all_rotations_from_string(input_string)
-        heap = Heap.from_lists(rotations)
+        heap = Heap.from_lists(rotations) # type: Heap
         heap.sort()
         # return BWT string
         return [r[-1] for r in heap.heap]

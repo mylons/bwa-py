@@ -36,7 +36,7 @@ class Heap:
 
 
     @classmethod
-    def from_lists(cls, l: List[Any]) -> Heap:
+    def from_lists(cls, l: List[Any]) -> 'Heap':
         """
         alternative constructor for initializing from a list of lists
         :param l:
@@ -126,9 +126,5 @@ class Heap:
             pass
 
         self.heap = sorted_heap
-
-
-
-
 
 
