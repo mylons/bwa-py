@@ -1,3 +1,5 @@
+from typing import List, Any
+
 from bwa.util import Heap
 
 
@@ -7,29 +9,12 @@ class BWT:
     class to represent a Transform
     """
 
-    def __init__(self, input_string):
+    def __init__(self, input_string: str) -> None:
         self._bwt = self.transform_string("{input_string}{self.EOF_CHARACTER}".format(**locals()))
 
-    def get_transform(self):
-        return ''.join(self._bwt)
+    def get_transform(self) -> str:
+        return ''.join(self._bwt) # type: str
 
-    def get_inverse(self):
-        """
-        naive inverse that takes advantage of the fact that a property of the BWT is
-        that given the last column of the matrix you know the first column.
-
-        given that, you can find the $ char in the last column and the letter that immediately follows it
-        is the same index in the first column. then, find that char in the last column, and repeat
-        :return:
-        """
-
-        h = Heap.from_string_rotations(self._bwt)
-        # now have the first row
-        h.sort()
-        output_string = []
-        # find starting index of '$'
-        index = self._bwt.index(self.EOF_CHARACTER)
-        return ''.join(output_string)
 
     @classmethod
     def load_bwt(cls, input_file):
@@ -41,8 +26,8 @@ class BWT:
         pass
 
     @staticmethod
-    def all_rotations_from_string(input_string):
-        rotations = [[None] * len(input_string) for _ in input_string]
+    def all_rotations_from_string(input_string: str) -> List[List[str]]:
+        rotations = [[''] * len(input_string) for _ in input_string] # type: List[List[str]]
         rotations[0] = list(input_string)
         # position in table
         for table_pos in range(1, len(input_string)):
@@ -54,9 +39,9 @@ class BWT:
 
 
     @staticmethod
-    def transform_string(input_string):
+    def transform_string(input_string: str) -> List[str]:
         rotations = BWT.all_rotations_from_string(input_string)
-        heap = Heap.from_string_rotations(rotations)
+        heap = Heap.from_lists(rotations)
         heap.sort()
         # return BWT string
         return [r[-1] for r in heap.heap]
