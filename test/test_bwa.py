@@ -22,7 +22,7 @@ def test_transform():
     original_string = "homolog.us"
     bwt = BWT(original_string)
     assert_that(bwt.get_transform(), is_("sgo$oolmhu."))
-    #assert_that(bwt.get_inverse(), is_(original_string))
+    assert_that(bwt.inverse_bwt(), is_(original_string))
 
 def test_transform_dna():
     bwt = BWT("ataata")
